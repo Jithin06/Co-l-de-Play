@@ -68,7 +68,6 @@ function App() {
 
   return (
     <>
-      <Navbar wallet={walletProp} />
       <Routes>
         <Route path="/" element={<Home wallet={walletProp} />} />
         <Route path="/book" element={<Book wallet={walletProp} />} />

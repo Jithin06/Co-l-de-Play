@@ -1,0 +1,44 @@
+.navbar-root {
+    margin: 0;
+    min-width: 100vw;
+
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-logo {
+    margin: 0;
+    padding: 1rem 2rem;
+    font-family: Humane-Bold, Helvetica, Arial, sans-serif;
+    font-size: 4.5rem;
+    color: #fc7eff;
+}
+
+.navbar-wallet {
+    margin: 0;
+    padding: 0 2rem;
+    display: flex;
+    place-items: center;
+}
+
+.navbar-wallet button {
+    margin: 0 0 0 1rem;
+    padding: 0.75rem 1rem;
+    position: relative;
+    bottom: 0.75rem;
+
+    font-family: Inter, Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    background-color: transparent;
+    color: #fc7eff;
+    border: 1.5px solid #fc7eff;
+    border-radius: 30px;
+}
+
+.navbar-wallet button:hover {
+    background-color: #fc7eff;
+    color: #ffffff;
+}
