@@ -1,60 +1,125 @@
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-import { dAppClient } from "./helpers/constants";
+import { dAppClientTezos } from "./helpers/constants";
 import { useEffect, useState } from "react";
-// import { TEZOS_COLLECT_WALLET } from "./helpers/constants";
+
+interface walletList {
+  tezos: string;
+  etherlink: string;
+}
+
+interface refreshList {
+  tezos: Date;
+  etherlink: Date;
+}
+
+interface walletInterfaceProps {
+  walletType: "tezos" | "etherlink";
+  wallets: walletList;
+  connect: (walletType: "tezos" | "etherlink") => Promise<string | undefined>;
+  disconnect: (
+    walletType: "tezos" | "etherlink"
+  ) => Promise<string | undefined>;
+}
+
+const WalletInterface = ({
+  walletType,
+  wallets,
+  connect,
+  disconnect,
+}: walletInterfaceProps) => {
+  const [addr, setAddr] = useState("");
+  useEffect(() => {
+    setAddr(wallets[walletType]);
+    console.log(wallets);
+  }, [wallets, walletType]);
+  return (
+    <>
+      <button
+        onClick={async () => {
+          setAddr((await connect(walletType)) || "");
+        }}
+      >
+        {addr || `Connect ${walletType} Wallet`}
+      </button>
+      <br />
+      <button
+        onClick={async () => {
+          setAddr((await disconnect(walletType)) || "");
+        }}
+      >
+        Disconnect Wallet
+      </button>
+    </>
+  );
+};
 
 function App() {
-  const [activeAddress, setActiveAddress] = useState("");
-  const [refreshedAt, setRefreshedAt] = useState(new Date());
-  const onConnectWallet = async () => {
-    if (activeAddress) alert(activeAddress);
+  const [activeAddress, setActiveAddress] = useState<walletList>({
+    tezos: "",
+    etherlink: "",
+  });
+  const [refreshedAt, setRefreshedAt] = useState<refreshList>({
+    tezos: new Date(),
+    etherlink: new Date(),
+  });
+  const onConnectWallet = async (walletType: "tezos" | "etherlink") => {
+    if (activeAddress[walletType]) alert(activeAddress);
     else {
+      const dAppClient =
+        walletType == "tezos" ? dAppClientTezos : dAppClientTezos;
       await dAppClient.requestPermissions();
       const result = await dAppClient.getActiveAccount();
-      setActiveAddress(result?.address || "");
+      const tempaddr = activeAddress;
+      tempaddr[walletType] = result?.address || "";
+      console.log(activeAddress);
+      setActiveAddress(tempaddr);
+      return result?.address || "";
     }
+  };
+
+  const onDisconnectWallet = async (walletType: "tezos" | "etherlink") => {
+    const dAppClient =
+      walletType == "tezos" ? dAppClientTezos : dAppClientTezos;
+    await dAppClient.disconnect();
+    setRefreshedAt((prevRefreshedAt) => ({
+      ...prevRefreshedAt,
+      walletType: new Date(),
+    }));
+    return "";
   };
 
   useEffect(() => {
     const getActiveAccounts = async () => {
-      const _activeAddress = await dAppClient.getActiveAccount();
-      setActiveAddress(_activeAddress?.address || "");
+      const _activeAddressTezos = await dAppClientTezos.getActiveAccount();
+      const _activeAddressEtherlink = await dAppClientTezos.getActiveAccount();
+
+      setActiveAddress({
+        tezos: _activeAddressTezos?.address || "",
+        etherlink: _activeAddressEtherlink?.address || "",
+      });
     };
     getActiveAccounts();
   }, [refreshedAt]);
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
+      <h1>Co-(l)-de Play</h1>
       <div className="card">
-        <button onClick={onConnectWallet}>
-          {activeAddress || "Connect Wallet"}
-        </button>
+        <WalletInterface
+          key={"tezos"}
+          walletType="tezos"
+          wallets={activeAddress}
+          connect={onConnectWallet}
+          disconnect={onDisconnectWallet}
+        />
         <br />
-        <button
-          onClick={async () => {
-            await dAppClient.disconnect();
-            setRefreshedAt(new Date());
-          }}
-        >
-          Disconnect Wallet
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        {/* <WalletInterface
+          key={"etherlink"}
+          walletType="etherlink"
+          wallets={activeAddress}
+          connect={onConnectWallet}
+          disconnect={onDisconnectWallet}
+        /> */}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   );
 }
