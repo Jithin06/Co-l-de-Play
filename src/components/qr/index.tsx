@@ -66,30 +66,7 @@ const QrReader = ({ setHide, setQrdata }: Props) => {
 
   return (
     <div className="qr-reader">
-      <video ref={videoEl}></video>
-      <div ref={qrBoxEl} className="qr-box">
-        {/* <img
-          src={QrFrame}
-          alt="Qr Frame"
-          width={256}
-          height={256}
-          className="qr-frame"
-        /> */}
-      </div>
-
-      {scannedResult && (
-        <p
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            zIndex: 99999,
-            color: "white",
-          }}
-        >
-          Scanned Result: {scannedResult}
-        </p>
-      )}
+      <video ref={videoEl} height={20} width={20}></video>
     </div>
   );
 };

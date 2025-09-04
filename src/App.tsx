@@ -3,7 +3,6 @@ import { dAppClientTezos } from "./helpers/constants";
 import { Route, Routes } from "react-router";
 import { useEffect, useState } from "react";
 import { Home, Book, Verify, Tickets } from "./pages";
-import { Navbar } from "./components";
 
 interface walletList {
   tezos: string;
@@ -64,6 +63,7 @@ function App() {
     wallets: activeAddress,
     connect: onConnectWallet,
     disconnect: onDisconnectWallet,
+    dAppclient: dAppClientTezos
   };
 
   return (

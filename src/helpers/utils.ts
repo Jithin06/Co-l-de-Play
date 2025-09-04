@@ -1,18 +1,8 @@
-import { QrReader } from "../components";
 import axios from "axios";
 import { Buffer } from "buffer";
 
-interface Props {
-  wallet: walletInterfaceProps;
-}
-
-const Verify = (props: Props) => {
-  const [kyc, setKyc] = useState("");
-  const [qrData, setQrdata] = useState("");
-  const [hide, setHide] = useState(true);
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const hex2buf = (hex: any) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const hex2buf = (hex: any) => {
     return new Uint8Array(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       hex.match(/[\da-f]{2}/gi).map((h: any) => parseInt(h, 16))
@@ -24,7 +14,8 @@ const Verify = (props: Props) => {
     return Buffer.from(hex2buf(hex)).toString("utf8");
   }
 
-  const fetchData = async () => {
+
+const fetchData = async () => {
     try {
       const tokenAddr = "KT1CE1iA9TKxW43icMqvGRzuVe3zLZV9qgLD";
       const contaddr = "KT1NiLKWihGxocPeKG33VdJ8ZfURHvxvLz44";
@@ -55,41 +46,4 @@ const Verify = (props: Props) => {
     }
   };
 
-  const checkTicket = async () => {
-    const tokenData = await fetchData();
-    console.log("Data: ", tokenData);
-  };
-
-  console.log(props);
-  return (
-    <>
-      Verify
-      <br />
-      <input value={kyc} onChange={(e) => setKyc(e.target.value)} />
-      <br />
-      <button
-        onClick={() => {
-          setHide(false);
-        }}
-      >
-        Scan QR
-      </button>
-      <br />
-      {hide ? <></> : <QrReader setHide={setHide} setQrdata={setQrdata} />}
-      <br />
-      {qrData}
-      <br />
-      <button
-        onClick={async () => {
-          setHide(true);
-          await checkTicket();
-        }}
-        disabled={qrData == "" || kyc == ""}
-      >
-        Verify Ticket
-      </button>
-    </>
-  );
-};
-
-export default Verify;
+export default fetchData;

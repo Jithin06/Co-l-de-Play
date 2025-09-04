@@ -5,4 +5,5 @@ interface walletInterfaceProps {
     disconnect: (
       walletType: "tezos"
     ) => Promise<string | undefined>;
+    dAppclient: DAppClient
   }

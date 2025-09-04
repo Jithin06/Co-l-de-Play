@@ -17,14 +17,15 @@ const WalletNav = ({ walletType, wallets, connect, disconnect }: walletInterface
                 {addr || `CONNECT WALLET`}
             </button>
             <br />
-            {/* <button
+            <button
                 className="disconnect-button"
                 onClick={async () => {
                     setAddr((await disconnect(walletType)) || "");
                 }}
             >
                 DISCONNECT WALLET
-            </button> */}
+                <i className="fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
         </>
     );
 };

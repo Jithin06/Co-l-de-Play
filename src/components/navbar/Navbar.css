@@ -14,6 +14,7 @@
     font-family: Humane-Bold, Helvetica, Arial, sans-serif;
     font-size: 4.5rem;
     color: #fc7eff;
+    cursor: pointer;
 }
 
 .navbar-wallet {
@@ -26,6 +27,7 @@
 .navbar-wallet button {
     margin: 0 0 0 1rem;
     padding: 0.75rem 1rem;
+    padding: 0.75rem 1rem 0.75rem 2rem;
     position: relative;
     bottom: 0.75rem;
 
@@ -36,9 +38,26 @@
     color: #fc7eff;
     border: 1.5px solid #fc7eff;
     border-radius: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 10rem;
 }
 
 .navbar-wallet button:hover {
     background-color: #fc7eff;
     color: #ffffff;
+}
+
+
+.connect-button{
+    transition-property: background-color, font-size, transform, color;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.5s;
+}
+
+.disconnect-button{
+    transition-property: background-color, font-size, transform, color;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.5s;
 }
