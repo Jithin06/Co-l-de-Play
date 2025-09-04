@@ -49,7 +49,6 @@
     color: #ffffff;
 }
 
-
 .connect-button{
     transition-property: background-color, font-size, transform, color;
     transition-timing-function: ease-in-out;
@@ -60,4 +59,52 @@
     transition-property: background-color, font-size, transform, color;
     transition-timing-function: ease-in-out;
     transition-duration: 0.5s;
+}
+
+.navbar-wrap{
+    content: "";
+    position: absolute;
+    top: 0%; right: 50%;
+    transform: translate(50%,0%);
+    width: 25rem;
+    height: 20rem;
+    background-color: #b3ec14;
+    border-radius: 0 0 20px 20px;
+    transition-property: background-color, font-size, transform, color top left right bottom;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.5s;
+}
+
+.navbar-bottom{
+    cursor: pointer;
+    position: relative;
+    background-color: #b3ec14;
+    width: 6rem;
+    height: 2rem;
+    bottom: 0%; left:0%;
+    transform: translate(160%,1000%);
+    border-radius: 0 0 20px 20px;
+}
+
+.navbar-wrap-toggle{
+    transform: translate(50%,-100%);
+}
+
+.navbar-menu{
+    height: 60%;
+    padding: 1rem 4rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-direction: column;
+    font-family: Inter, Helvetica, Arial, sans-serif;
+    font-size:  1.4rem;
+    color: black;
+    gap: 0.5rem;
+}
+
+.navbar-menu > div{
+    width: 100%;
+    text-align: left;
+    border-bottom: black 2px solid;
 }
