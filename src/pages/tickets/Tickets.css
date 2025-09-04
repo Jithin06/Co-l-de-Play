@@ -69,9 +69,9 @@
 }
 
 .card-qr {
+    padding: 1rem;
     height: 6rem;
     width: 6rem;
-    background-color: #1c1c1c;
 }
 
 .qr-small {

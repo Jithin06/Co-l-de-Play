@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import "./Navbar.css";
 import WalletNav from "./wallet";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 interface Props {
     wallet: walletInterfaceProps;
@@ -63,6 +64,10 @@ const Navbar = (props: Props) => {
             }}
           >
             Admin
+          </div>
+          <div>
+            <Link to="https://github.com/Jithin06/Coldplay" style={{ color: "black", textDecoration: "none" }}>Github</Link>
+            
           </div>
         </div>
       </div>

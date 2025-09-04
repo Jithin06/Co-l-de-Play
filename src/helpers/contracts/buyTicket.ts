@@ -1,4 +1,5 @@
 import { DAppClient, TezosOperationType } from "@airgap/beacon-sdk";
+import toast from "react-hot-toast";
 
 const buyTicket = async (dAppClient: DAppClient, name: string = "Concert", tickets:number = 1, amount: number = 0)=>{
   try {
@@ -24,6 +25,7 @@ const buyTicket = async (dAppClient: DAppClient, name: string = "Concert", ticke
     });
   
     console.log(result);
+    toast.success("Tickets have been bought Succesfully. ");
     return {status: true, data: result}
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error:any) {
@@ -31,6 +33,7 @@ const buyTicket = async (dAppClient: DAppClient, name: string = "Concert", ticke
       `The contract call failed and the following error was returned:`,
       error
     );
+    toast.error("An error has occured")
     return {status: false, data: error}
   }
   

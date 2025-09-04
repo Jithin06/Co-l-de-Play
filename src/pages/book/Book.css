@@ -61,19 +61,19 @@
     font-weight: 600;
     font-size: 1.25rem;
     padding: 0 1rem;
+    font-family: Inter;
 }
 
-.card-venue {
-    font-weight: 900;
-    font-size: 2.25rem;
-    padding: 0 1rem;
-    margin-top: 2rem;
-}
-
-.card-venue > p{
-    border-left: black 2px solid;
+.card-venue > p {
     cursor: pointer;
-    padding-left: 1rem;
+    margin: 1rem 0;
+    padding: 0 1rem;
+    font-size: 4rem;
+    text-decoration: underline;
+}
+
+.card-venue > p:hover {
+    color: #ffffff;
 }
 
 .card-sold {
@@ -87,4 +87,85 @@
     border-radius: 30px;
     max-width: 4.5rem;
     text-align: center;
+}
+
+.buypopup{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    opacity: 0.9;
+    width: 100vw;
+    height: 100vh;
+}
+
+.buybody{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.bblabel{
+    font-size: 1.3rem;
+    margin: 1rem;
+}
+
+.bbinput{
+    border: white 2px solid;
+    background-color: black;
+    color: white;
+    font-size: 1rem;
+    padding: 0.5rem;
+}
+
+.bbx{
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+.bbb{
+    margin-top: 3rem;
+    width: 10rem;
+    height: 4rem;
+    font-family: Humane-Bold, Helvetica, Arial, sans-serif;
+    font-size: 4rem;
+    color: white;
+    background: linear-gradient(90deg, #b3ec14, #5546ff, #fc7eff);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.bbb:hover {
+    color: transparent;
+    transition: 500ms ease;
+}
+
+.wrap1{
+    width: 80vw;
+    margin-bottom: 4rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-flow: row wrap;
+}
+
+.err{
+    color: red;
+    width: 40%;
+    font-size: 0.7rem;
+    margin-top: 1rem;
+}
+
+.wrap2{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-flow: column wrap;
 }

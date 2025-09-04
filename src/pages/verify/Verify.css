@@ -1,33 +1,32 @@
-.verify-main{
+.verify-main {
     min-height: 100vh;
     width: 100vw;
-    background-color:black;
+    background-color: black;
 }
 
-.verify-body{
+.verify-body {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
-.verify-heading{
-    color: #fc7eff;
-    font-size: 10rem;
+.verify-heading {
+    color: #ffffff;
+    font-size: 8rem;
     font-family: Humane-Bold, Helvetica, Arial, sans-serif;
     margin-bottom: 3rem;
 }
 
-.verify-form{
+.verify-form {
     display: flex;
     align-items: center;
     justify-content: space-around;
     flex-flow: row wrap;
     min-width: 80vw;
-
 }
 
-.verify-form-body{
+.verify-form-body {
     width: 40%;
     height: 40%;
     min-width: 20rem;
@@ -38,14 +37,14 @@
     flex-direction: column;
 }
 
-.qr{
+.qr {
     border: white 3px dashed;
     border-radius: 25px;
 }
 
-.qr-scan-button{
-    font-size: 1.5rem;
-    padding: 1.5rem;
+.qr-scan-button {
+    font-size: 1.25rem;
+    padding: 1rem 4rem;
     font-family: Inter, Helvetica, Arial, sans-serif;
     border: #fc7eff 2px solid;
     background-color: black;
@@ -57,22 +56,41 @@
     transition-duration: 0.5s;
 }
 
-.qr-scan-button:hover{
+.qr-scan-button:hover {
     background-color: #fc7eff;
     color: black;
 }
 
-.verify-input{
+.verify-button {
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding: 0.75rem 2rem;
+    border: #bfff0a 2px solid;
+    color: #bfff0a;
+}
+
+.verify-button:hover {
+    background-color: #bfff0a;
+    color: black;
+}
+
+.verify-input {
     border: white 2px solid;
     background-color: black;
     color: white;
     font-size: 1rem;
-    padding: 0.5rem;
+    padding: 1rem;
     border-radius: 50px;
+    width: 20rem;
 }
 
-.verify-label{
+.verify-input:focus {
+    outline: none;
+}
+
+.verify-label {
     color: white;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
 }

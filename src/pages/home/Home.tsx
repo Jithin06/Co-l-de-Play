@@ -12,8 +12,8 @@ const Home = (props: Props) => {
             <Navbar wallet={props.wallet} />
             <div className="home-h1">Co-(l)-de Play</div>
             <div className="home-p">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus aut enim molestiae dolores officia
-                architecto sed reprehenderit, magni eaque excepturi?
+                Co-(l)-de Play is a secure ticket booking and reselling service on the Tezos blockchain that provides
+                reliability to the customer and safety to the client.
             </div>
         </div>
     );

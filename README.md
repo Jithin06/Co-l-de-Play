@@ -1,28 +1,13 @@
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Co-(l)-de Play
 
-Currently, two official plugins are available:
+This project implements a blockchain-based event ticketing system designed to reduce ticket scalping and fraud. By leveraging the transparency, security, and immutability of blockchain technology, tickets are issued as unique digital assets that are traceable and securely transferred between users. The system ensures that only legitimate transactions occur, preventing bulk purchasing by bots or unauthorized resale at inflated prices. Additionally, smart contracts manage ticket distribution, ownership transfers, and enforce resale policies, promoting fair pricing and accessibility for genuine attendees.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
 
-## Expanding the ESLint configuration
+### Frontend
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+React Bundled with Vite and beacon-sdk
 
-- Configure the top-level `parserOptions` property like this:
+### Smart Contracts
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Deployed on Tezos Ghostnet written in SmartPy

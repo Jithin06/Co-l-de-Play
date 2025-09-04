@@ -27,7 +27,7 @@
 .navbar-wallet button {
     margin: 0 0 0 1rem;
     padding: 0.75rem 1rem;
-    padding: 0.75rem 1rem 0.75rem 2rem;
+    padding: 0.75rem 1rem;
     position: relative;
     bottom: 0.75rem;
 
@@ -41,7 +41,7 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: 10rem;
+    max-width: 15rem;
 }
 
 .navbar-wallet button:hover {
@@ -49,23 +49,25 @@
     color: #ffffff;
 }
 
-.connect-button{
+.connect-button {
     transition-property: background-color, font-size, transform, color;
     transition-timing-function: ease-in-out;
     transition-duration: 0.5s;
 }
 
-.disconnect-button{
+.disconnect-button {
+    padding: 0;
     transition-property: background-color, font-size, transform, color;
     transition-timing-function: ease-in-out;
     transition-duration: 0.5s;
 }
 
-.navbar-wrap{
+.navbar-wrap {
     content: "";
     position: absolute;
-    top: 0%; right: 50%;
-    transform: translate(50%,0%);
+    top: 0%;
+    right: 50%;
+    transform: translate(50%, 0%);
     width: 25rem;
     height: 20rem;
     background-color: #b3ec14;
@@ -75,22 +77,23 @@
     transition-duration: 0.5s;
 }
 
-.navbar-bottom{
+.navbar-bottom {
     cursor: pointer;
     position: relative;
     background-color: #b3ec14;
     width: 6rem;
     height: 2rem;
-    bottom: 0%; left:0%;
-    transform: translate(160%,1000%);
+    bottom: 0%;
+    left: 0%;
+    transform: translate(160%, 1000%);
     border-radius: 0 0 20px 20px;
 }
 
-.navbar-wrap-toggle{
-    transform: translate(50%,-100%);
+.navbar-wrap-toggle {
+    transform: translate(50%, -100%);
 }
 
-.navbar-menu{
+.navbar-menu {
     height: 60%;
     padding: 1rem 4rem;
     display: flex;
@@ -98,13 +101,14 @@
     justify-content: space-around;
     flex-direction: column;
     font-family: Inter, Helvetica, Arial, sans-serif;
-    font-size:  1.4rem;
+    font-size: 1.4rem;
     color: black;
     gap: 0.5rem;
 }
 
-.navbar-menu > div{
+.navbar-menu > div {
     width: 100%;
     text-align: left;
     border-bottom: black 2px solid;
+    cursor: pointer;
 }
