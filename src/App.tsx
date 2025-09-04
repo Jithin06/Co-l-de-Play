@@ -2,7 +2,7 @@ import "./App.css";
 import { dAppClientTezos } from "./helpers/constants";
 import { Route, Routes } from "react-router";
 import { useEffect, useState } from "react";
-import { Home, Book, Verify, Tickets } from "./pages";
+import { Home, Book, Verify, Tickets, Admin } from "./pages";
 
 interface walletList {
   tezos: string;
@@ -73,6 +73,7 @@ function App() {
         <Route path="/book" element={<Book wallet={walletProp} />} />
         <Route path="/tickets" element={<Tickets wallet={walletProp} />} />
         <Route path="/verify" element={<Verify wallet={walletProp} />} />
+        <Route path="/admin" element={<Admin wallet={walletProp} />} />
       </Routes>
     </>
   );

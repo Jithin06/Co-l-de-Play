@@ -19,11 +19,8 @@ const QrReader = ({ setHide, setQrdata }: Props) => {
   const qrBoxEl = useRef<HTMLDivElement>(null);
   const [qrOn, setQrOn] = useState<boolean>(true);
 
-  const [scannedResult, setScannedResult] = useState<string | undefined>("");
-
   const onScanSuccess = (result: QrScanner.ScanResult) => {
     console.log(result);
-    setScannedResult(result?.data);
     setQrdata(result?.data);
     setHide(true);
   };

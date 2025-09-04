@@ -12,7 +12,7 @@
 //   colorMode: ColorMode.DARK,
 // });
 
-import { DAppClient } from "@airgap/beacon-sdk";
+import { DAppClient, NetworkType } from "@airgap/beacon-sdk";
 
-export const dAppClientTezos = new DAppClient({ name: "Tezos" });
+export const dAppClientTezos = new DAppClient({ name: "Tezos", preferredNetwork: NetworkType.GHOSTNET });
 // export const dAppClientEtherlink = new DAppClient({ name: "Etherlink" });
