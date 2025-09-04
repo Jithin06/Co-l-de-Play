@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { Navbar } from "../../components";
+import addEvent from "../../helpers/addEvent";
+import deleteEvent from "../../helpers/deleteEvent";
+import updateTickets from "../../helpers/updateTickets";
+import updatePrice from "../../helpers/updatePrice";
 import "./Admin.css";
 
 interface Props {
@@ -9,7 +13,7 @@ interface Props {
 const Admin = (props: Props) => {
     console.log(props);
 
-    const [activeForm, setActiveForm] = useState("form1");
+    const [activeForm, setActiveForm] = useState("addEventForm");
 
     const changeActiveForm = (activeForm: any) => {
         setActiveForm(activeForm);
@@ -21,140 +25,162 @@ const Admin = (props: Props) => {
             <div className="admin-h1">ADMIN</div>
             <div className="admin-cardlist">
                 <div className="admin-left">
-                    <div className="admin-contract" onClick={() => changeActiveForm("form1")}>
-                        ADD EVENT 1.
+                    <div className="admin-contract" onClick={() => changeActiveForm("addEventForm")}>
+                        ADD EVENT.
                     </div>
-                    <div className="admin-contract" onClick={() => changeActiveForm("form2")}>
-                        ADD EVENT 2.
+                    <div className="admin-contract" onClick={() => changeActiveForm("deleteEventForm")}>
+                        DELETE EVENT.
                     </div>
-                    <div className="admin-contract" onClick={() => changeActiveForm("form3")}>
-                        ADD EVENT 3.
+                    <div className="admin-contract" onClick={() => changeActiveForm("updateTicketsForm")}>
+                        UPDATE TICKETS.
                     </div>
-                    <div className="admin-contract" onClick={() => changeActiveForm("form4")}>
-                        ADD EVENT 4.
+                    <div className="admin-contract" onClick={() => changeActiveForm("updatePricesForm")}>
+                        UPDATE PRICES.
                     </div>
                 </div>
                 <div className="admin-right">
-                    {activeForm === "form1" && <Form1 />}
-                    {activeForm === "form2" && <Form2 />}
-                    {activeForm === "form3" && <Form3 />}
-                    {activeForm === "form4" && <Form4 />}
+                    {activeForm === "addEventForm" && <AddEventForm wallet={props.wallet} />}
+                    {activeForm === "deleteEventForm" && <DeleteEventForm wallet={props.wallet} />}
+                    {activeForm === "updateTicketsForm" && <UpdateTicketsForm wallet={props.wallet} />}
+                    {activeForm === "updatePricesForm" && <UpdatePricesForm wallet={props.wallet} />}
                 </div>
             </div>
         </div>
     );
 };
 
-function Form1() {
+const AddEventForm = (props: Props) => {
+    const [name, setName] = useState("");
+    const [price, setPrice] = useState("");
+    const [ticketsNum, setTicketsNum] = useState("");
     return (
-        <form className="admin-form" action="">
+        <form className="admin-form">
             <div className="form-main">
                 <div className="form-section1">
-                    <label htmlFor="field1">FIELD 1</label>
+                    <label htmlFor="name">NAME</label>
                     <br />
-                    <input type="text" name="field1" id="field1" />
+                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
                     <br />
-                    <label htmlFor="field2">FIELD 2</label>
+                    <label htmlFor="price">PRICE</label>
                     <br />
-                    <input type="text" name="field2" id="field2" />
+                    <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} />
+                    <br />
                 </div>
                 <div className="form-section2">
-                    <label htmlFor="field3">FIELD 3</label>
+                    <label htmlFor="num_tickets">NO. OF TICKETS</label>
                     <br />
-                    <input type="text" name="field3" id="field3" />
+                    <input type="text" value={ticketsNum} onChange={(e) => setTicketsNum(e.target.value)} />
                     <br />
-                    <label htmlFor="field4">FIELD 4</label>
-                    <br />
-                    <input type="text" name="field4" id="field4" />
                 </div>
             </div>
-            <input type="submit" className="submit-btn" value="SUBMIT." />
+             <button
+                onClick={async (e) => {
+                    e.preventDefault()
+                    const useraddr = await props.wallet.dAppclient.getActiveAccount();
+                    addEvent(props.wallet.dAppclient, useraddr.address, name, ticketsNum, price);
+                }}
+                className="submit-btn"
+            >
+                SUBMIT.
+            </button>
         </form>
     );
-}
+};
 
-function Form2() {
-    return (
-        <form className="admin-form" action="">
-            <div className="form-main">
-                <div className="form-section1">
-                    <label htmlFor="field1">FIELD 5</label>
-                    <br />
-                    <input type="text" name="field1" id="field1" />
-                    <br />
-                    <label htmlFor="field2">FIELD 6</label>
-                    <br />
-                    <input type="text" name="field2" id="field2" />
-                </div>
-                <div className="form-section2">
-                    <label htmlFor="field3">FIELD 7</label>
-                    <br />
-                    <input type="text" name="field3" id="field3" />
-                    <br />
-                    <label htmlFor="field4">FIELD 8</label>
-                    <br />
-                    <input type="text" name="field4" id="field4" />
-                </div>
-            </div>
-            <input type="submit" className="submit-btn" value="SUBMIT." />
-        </form>
-    );
-}
+const DeleteEventForm = (props: Props) => {
+    const [name, setName] = useState("");
 
-function Form3() {
     return (
-        <form className="admin-form" action="">
+        <form className="admin-form">
             <div className="form-main">
                 <div className="form-section1">
-                    <label htmlFor="field1">FIELD 9</label>
+                    <label htmlFor="name">NAME</label>
                     <br />
-                    <input type="text" name="field1" id="field1" />
+                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
                     <br />
-                    <label htmlFor="field2">FIELD 10</label>
-                    <br />
-                    <input type="text" name="field2" id="field2" />
-                </div>
-                <div className="form-section2">
-                    <label htmlFor="field3">FIELD 11</label>
-                    <br />
-                    <input type="text" name="field3" id="field3" />
-                    <br />
-                    <label htmlFor="field4">FIELD 12</label>
-                    <br />
-                    <input type="text" name="field4" id="field4" />
                 </div>
             </div>
-            <input type="submit" className="submit-btn" value="SUBMIT." />
+            <button
+                onClick={async (e) => {
+                    e.preventDefault()
+                    const useraddr = await props.wallet.dAppclient.getActiveAccount();
+                    deleteEvent(props.wallet.dAppclient, useraddr.address, name);
+                }}
+                className="submit-btn"
+            >
+                SUBMIT.
+            </button>
         </form>
     );
-}
+};
 
-function Form4() {
+const UpdateTicketsForm = (props: Props) => {
+    const [name, setName] = useState("");
+    const [ticketsRequired, setTicketsRequired] = useState("");
+
     return (
-        <form className="admin-form" action="">
+        <form className="admin-form">
             <div className="form-main">
                 <div className="form-section1">
-                    <label htmlFor="field1">FIELD 13</label>
+                    <label htmlFor="name">NAME</label>
                     <br />
-                    <input type="text" name="field1" id="field1" />
+                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
                     <br />
-                    <label htmlFor="field2">FIELD 16</label>
+                </div>
+                <div className="form-section2">
+                    <label htmlFor="tickets_required">TICKETS REQUIRED</label>
+                    <br />
+                    <input type="text" value={ticketsRequired} onChange={(e) => setTicketsRequired(e.target.value)} />
+                    <br />
+                </div>
+            </div>
+            <button
+                onClick={async (e) => {
+                    e.preventDefault()
+                    const useraddr = await props.wallet.dAppclient.getActiveAccount();
+                    updateTickets(props.wallet.dAppclient, useraddr.address, name, ticketsRequired);
+                }}
+                className="submit-btn"
+            >
+                SUBMIT.
+            </button>
+        </form>
+    );
+};
+
+const UpdatePricesForm = (props: Props) => {
+    const [name, setName] = useState("");
+    const [price, setPrice] = useState("");
+
+    return (
+        <form className="admin-form">
+            <div className="form-main">
+                <div className="form-section1">
+                    <label htmlFor="name">NAME</label>
+                    <br />
+                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
                     <br />
                     <input type="text" name="field2" id="field2" />
                 </div>
                 <div className="form-section2">
-                    <label htmlFor="field3">FIELD 14</label>
+                    <label htmlFor="price">PRICE</label>
                     <br />
-                    <input type="text" name="field3" id="field3" />
+                    <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} />
                     <br />
-                    <label htmlFor="field4">FIELD 15</label>
-                    <br />
-                    <input type="text" name="field4" id="field4" />
                 </div>
             </div>
-            <input type="submit" className="submit-btn" value="SUBMIT." />
+            <button
+                onClick={async (e) => {
+                    e.preventDefault()
+                    const useraddr = await props.wallet.dAppclient.getActiveAccount();
+                    updatePrice(props.wallet.dAppclient, useraddr.address, name, price);
+                }}
+                className="submit-btn"
+            >
+                SUBMIT.
+            </button>
         </form>
     );
-}
+};
 
 export default Admin;

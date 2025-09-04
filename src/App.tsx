@@ -3,6 +3,7 @@ import { dAppClientTezos } from "./helpers/constants";
 import { Route, Routes } from "react-router";
 import { useEffect, useState } from "react";
 import { Home, Book, Verify, Tickets, Admin } from "./pages";
+import { Toaster } from 'react-hot-toast';
 
 interface walletList {
   tezos: string;
@@ -68,6 +69,7 @@ function App() {
 
   return (
     <>
+    <Toaster />
       <Routes>
         <Route path="/" element={<Home wallet={walletProp} />} />
         <Route path="/book" element={<Book wallet={walletProp} />} />

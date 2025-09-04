@@ -1,7 +1,7 @@
 .book-div {
     margin: 0;
     min-width: 100vw;
-    
+
     background-color: #1c1c1c;
 
     display: flex;
@@ -67,6 +67,13 @@
     font-weight: 900;
     font-size: 2.25rem;
     padding: 0 1rem;
+    margin-top: 2rem;
+}
+
+.card-venue > p{
+    border-left: black 2px solid;
+    cursor: pointer;
+    padding-left: 1rem;
 }
 
 .card-sold {
