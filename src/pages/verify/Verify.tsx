@@ -1,87 +1,91 @@
-import { useEffect, useState } from "react";
-import { Navbar } from "../../components";
-import "./Tickets.css";
-import QRCode from "react-qr-code";
-// import fetchtickets from "../../helpers/fetch/fetchtickets";
+import { useState } from "react";
+import { Navbar, QrReader } from "../../components";
 import fetchnft from "../../helpers/fetch/fetchnft";
-import publishNFT from "../../helpers/publishNFT";
+
+import "./Verify.css";
+import toast from "react-hot-toast";
 
 interface Props {
     wallet: walletInterfaceProps;
 }
 
-const Tickets = (props: Props) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [fungi, setFungi] = useState<any[]>([]);
+const Verify = (props: Props) => {
+    const [kyc, setKyc] = useState("");
+    const [qrData, setQrdata] = useState("");
     const [hide, setHide] = useState(true);
-    const [dt, setDT] = useState("");
 
-    const onQRClick = (da: string) => {
-        setHide(false);
-        setDT(da);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-    const onBobClick = () => setHide(true);
-
-    useEffect(() => {
-        (async () => {
-            const activeacc = await props.wallet.dAppclient.getActiveAccount();
-            if (activeacc) {
-                const userAddress = activeacc.address;
-                // const tickets = await fetchtickets(userAddress);
-                // console.log(tickets);
-                const nfts = await fetchnft();
-                console.log(nfts);
-                const filteredNfts = nfts.filter((e: any) => e.value.holder === userAddress);
-                console.log(filteredNfts);
-                setFungi(filteredNfts);
+    const checkTicket = async () => {
+        const tokenData = await fetchnft();
+        let vl = tokenData.filter(
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (v: any) => {
+                try {
+                    const jj = JSON.parse(v["value"]["event_data"]);
+                    const qq = JSON.parse(qrData);
+                    return jj["trhash"] === qq["trhash"];
+                } catch (error) {
+                    return false;
+                }
             }
-        })();
-    }, []);
+        );
+        if (vl.length > 0) {
+            vl = vl[0];
+            if (kyc == vl["value"]["aadhar_number"]) {
+                toast.success("Ticket is Valid");
+            } else {
+                toast.error("Ticket is invalid");
+            }
+        } else {
+            toast.error("Ticket is invalid");
+        }
+    };
 
     return (
-        <>
-            <div className="ticket-div">
-                <Navbar wallet={props.wallet} />
-                <>
-                    {hide ? null : (
-                        <div className="bob" onClick={onBobClick}>
-                            <QRCode value={dt} size={300} />
+        <div className="verify-main">
+            <Navbar wallet={props.wallet} />
+            <div className="verify-body">
+                <div className="verify-heading">VERIFY</div>
+                <div className="verify-form">
+                    <div className="verify-form-body qr">
+                        {hide ? (
+                            <>
+                                <button
+                                    className="qr-scan-button"
+                                    onClick={() => {
+                                        setHide(false);
+                                    }}
+                                >
+                                    Scan QR
+                                </button>
+                                <div className="verifyy">{qrData}</div>
+                            </>
+                        ) : (
+                            <QrReader setHide={setHide} setQrdata={setQrdata} />
+                        )}
+                    </div>
+                    <div className="verify-form-body">
+                        <div>
+                            <div className="verify-label">KYC Document</div>
+                            <br />
+                            <input className="verify-input" value={kyc} onChange={(e) => setKyc(e.target.value)} />
                         </div>
-                    )}
-                </>
-                <div className="ticket-h1">TICKETS</div>
-                <div className="ticket-cardlist">
-                    {fungi.map((eve, ind) => (
-                        <div className={`book-card card${(ind % 3) + 1}`} key={ind}>
-                            <div className="card-img"></div>
-                            <div
-                                className="card-sold"
-                                onClick={() => {
-                                    publishNFT(props.wallet.dAppclient, eve.value.token_id);
-                                }}
-                            >
-                                SELL TICKET
-                            </div>
-                            <div className="card-h2">{JSON.parse(eve.value.event_data)["eventName"]}</div>
-                            <div className="card-date" style={{ fontFamily: "sans-serif" }}>
-                                {JSON.parse(eve.value.event_data)["numTickets"]} Ticket(s)
-                            </div>
-                            <div
-                                id="qr"
-                                className="card-qr"
-                                onClick={() => {
-                                    onQRClick(eve.value.event_data);
-                                }}
-                            >
-                                <QRCode value={eve.value.event_data} size={100} />
-                            </div>
-                        </div>
-                    ))}
+                        <button
+                            className="qr-scan-button verify-button"
+                            onClick={async () => {
+                                setHide(true);
+                                await checkTicket();
+                            }}
+                            disabled={qrData == "" || kyc == ""}
+                        >
+                            Verify Ticket
+                        </button>
+                    </div>
                 </div>
             </div>
-        </>
+
+            <br />
+        </div>
     );
 };
 
-export default Tickets;
+export default Verify;

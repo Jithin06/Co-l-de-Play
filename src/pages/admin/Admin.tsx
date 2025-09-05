@@ -52,6 +52,7 @@ const AddEventForm = (props: Props) => {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [ticketsNum, setTicketsNum] = useState("");
+
     return (
         <form className="admin-form">
             <div className="form-main">
@@ -72,7 +73,7 @@ const AddEventForm = (props: Props) => {
                     <br />
                 </div>
             </div>
-             <button
+            <button
                 onClick={async (e) => {
                     e.preventDefault()
                     const useraddr = await props.wallet.dAppclient.getActiveAccount();
@@ -159,7 +160,6 @@ const UpdatePricesForm = (props: Props) => {
                     <br />
                     <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
                     <br />
-                    <input type="text" name="field2" id="field2" />
                 </div>
                 <div className="form-section2">
                     <label htmlFor="price">PRICE</label>

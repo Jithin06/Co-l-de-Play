@@ -3,14 +3,13 @@ import { Navbar } from "../../components";
 import "./Book.css";
 import fetchEvents from "../../helpers/fetch/fetchEvents";
 import buyTicket from "../../helpers/contracts/buyTicket";
-import toast from "react-hot-toast";
 
 interface Props {
-    wallet: walletInterfaceProps;
+  wallet: walletInterfaceProps;
 }
 
 const Book = (props: Props) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [events, setEvents] = useState<any[]>([]);
   const [hide, setHide] = useState(true);
   const [kyc, setKyc] = useState("XXXX-XXXX-XXXX");
@@ -66,7 +65,7 @@ const Book = (props: Props) => {
                 </div>
               </div>
               <div className="bblabel">
-                {ticks} tickets to {nm} at {prc * ticks} Tez{" "}
+                {ticks} tickets to {nm} at {prc * ticks} Mutez{" "}
               </div>
               <div
                 className="bbb"
@@ -92,7 +91,7 @@ const Book = (props: Props) => {
                 <i className="fa fa-times fa-4x"></i>
               </div>
             </div>
-        </div>
+          </div>
         )}
       </>
       <div className="book-h1">EVENTS</div>
@@ -103,7 +102,7 @@ const Book = (props: Props) => {
             {/* <div className="card-sold">SOLD OUT</div> */}
             <div className="card-h2">{eve["parameter"]["value"]["name"]}</div>
             <div className="card-date" style={{ fontFamily: "sans-serif" }}>
-              {eve["parameter"]["value"]["price"]} Tez
+              {eve["parameter"]["value"]["price"]} Mutez
             </div>
             <div
               className="card-venue"

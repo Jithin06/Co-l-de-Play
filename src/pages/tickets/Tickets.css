@@ -18,12 +18,12 @@
 }
 
 .ticket-cardlist {
-    margin: 0;
+    margin: 5rem;
     display: flex;
     align-items: center;
-    gap: 0 3rem;
+    gap: 3rem 3rem;
     justify-content: space-between;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-self: flex-end;
 }
 
@@ -59,6 +59,15 @@
     font-family: Humane-Bold, Helvetica, Arial, sans-serif;
     font-weight: 700;
     font-size: 2rem;
+}
+
+.card-sold {
+    max-width: 6rem;
+}
+
+.card-sold:hover {
+    color: #bfff0a;
+    background-color: #1c1c1c;
 }
 
 .card-bottom {

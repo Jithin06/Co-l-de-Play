@@ -21,22 +21,20 @@ function App() {
     tezos: new Date(),
   });
   const onConnectWallet = async (walletType: "tezos") => {
-    const onConnectWallet = async (walletType: "tezos") => {
-      if (activeAddress[walletType]) alert(activeAddress);
-      else {
-        const dAppClient =
-          walletType == "tezos" ? dAppClientTezos : dAppClientTezos;
-        await dAppClient.requestPermissions();
-        const result = await dAppClient.getActiveAccount();
-        const tempaddr = activeAddress;
-        tempaddr[walletType] = result?.address || "";
-        setActiveAddress(tempaddr);
-        return result?.address || "";
-      }
-    };
+    if (activeAddress[walletType]) alert(activeAddress);
+    else {
+      const dAppClient =
+        walletType == "tezos" ? dAppClientTezos : dAppClientTezos;
+      await dAppClient.requestPermissions();
+      const result = await dAppClient.getActiveAccount();
+      const tempaddr = activeAddress;
+      tempaddr[walletType] = result?.address || "";
+      setActiveAddress(tempaddr);
+      return result?.address || "";
+    }
+  };
 
   const onDisconnectWallet = async (walletType: "tezos") => {
-    const onDisconnectWallet = async (walletType: "tezos") => {
     const dAppClient =
       walletType == "tezos" ? dAppClientTezos : dAppClientTezos;
     await dAppClient.disconnect();
@@ -65,10 +63,9 @@ function App() {
     disconnect: onDisconnectWallet,
     dAppclient: dAppClientTezos,
   };
-
   return (
     <>
-    <Toaster />
+      <Toaster />
       <Routes>
         <Route path="/" element={<Home wallet={walletProp} />} />
         <Route path="/book" element={<Book wallet={walletProp} />} />
