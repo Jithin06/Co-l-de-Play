@@ -1,3 +1,4 @@
+// import { BeaconWallet } from "@taquito/beacon-wallet";
 // import { ColorMode, Network, NetworkType } from "@airgap/beacon-sdk";
 
 // export const TEZOS_COLLECT_NETWORK: Network = {

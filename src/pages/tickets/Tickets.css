@@ -91,3 +91,10 @@
     width: 100vw;
     height: 100vh;
 }
+
+.verifyy{
+    width: 50%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

@@ -21,9 +21,12 @@ class Marketplace(sp.Contract):
                     amount=sp.TMutez,
                     token_id=sp.TNat,
                     collectable=sp.TBool,
-                    num_tickets_booked=sp.TNat,
-                    aadhar_number=sp.TNat,
-                    event_name=sp.TString)),
+                    aadhar_number=sp.TInt,
+                    event_data=sp.TString
+                    # num_tickets_booked=sp.TNat,
+                    # event_name=sp.TString,
+                    # transaction_hash=sp.TString
+                    )),
             token_id=0,
             )
 
@@ -50,9 +53,12 @@ class Marketplace(sp.Contract):
             amount=sp.amount,
             token_id=self.data.token_id,
             collectable=False,
-            num_tickets_booked=params.num_tickets_booked,
             aadhar_number=params.aadhar_number,
-            event_name=params.event_name,
+            event_data=params.event_data
+            # Params inside event_data:
+            # num_tickets_booked=params.num_tickets_booked,
+            # event_name=params.event_name,
+            # transaction_hash=params.transaction_hash
         )
         sp.send(self.data.admin, sp.amount)
         self.data.token_id += 1
@@ -112,7 +118,7 @@ def test():
     
     marketplace.mint(
         metadata= sp.pack("ipfs://bafyreibwl5hhjgrat5l7cmjlv6ppwghm6ijygpz2xor2r6incfcxnl7y3e/metadata.json"),
-        num_tickets_booked=10, aadhar_number=100, event_name="Event").run(sender=mark, amount=sp.tez(10))
+        aadhar_number=100, event_data="{key: value}").run(sender=mark, amount=sp.tez(10))
     marketplace.publish_nft(token_id=0).run(sender=mark)
     
     scenario.h1("Collect")

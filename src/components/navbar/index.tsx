@@ -5,11 +5,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 interface Props {
-    wallet: walletInterfaceProps;
+  wallet: walletInterfaceProps;
 }
 
 const Navbar = (props: Props) => {
-    const [tgg, setTgg] = useState(true);
+  const [tgg, setTgg] = useState(true);
   const navigate = useNavigate();
   return (
     <div className="navbar-root">
@@ -35,8 +35,7 @@ const Navbar = (props: Props) => {
             <i className="fa fa-arrow-up" style={{ color: "black" }}></i>
           )}
         </div>
-    );
-    <div className="navbar-menu">
+        <div className="navbar-menu">
           <div
             onClick={() => {
               navigate("/book");
@@ -73,7 +72,7 @@ const Navbar = (props: Props) => {
             Admin
           </div>
           <div>
-            <Link to="https://github.com/Jithin06/Coldplay" style={{ color: "black", textDecoration: "none" }}>Github</Link>
+            <Link to="https://github.com/Jithin06/Co-l-de-Play" style={{ color: "black", textDecoration: "none" }}>Github</Link>
             
           </div>
         </div>

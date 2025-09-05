@@ -4,7 +4,6 @@ const WalletNav = ({ walletType, wallets, connect, disconnect }: walletInterface
     const [addr, setAddr] = useState("");
     useEffect(() => {
         setAddr(wallets[walletType]);
-        console.log(wallets);
     }, [wallets, walletType]);
     return (
         <>

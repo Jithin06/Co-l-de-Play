@@ -30,7 +30,6 @@ function App() {
         const result = await dAppClient.getActiveAccount();
         const tempaddr = activeAddress;
         tempaddr[walletType] = result?.address || "";
-        console.log(activeAddress);
         setActiveAddress(tempaddr);
         return result?.address || "";
       }

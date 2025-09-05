@@ -18,7 +18,6 @@ const Market = (props: Props) => {
   useEffect(() => {
     (async () => {
       const nftdata = await fetchnft();
-      console.log(nftdata);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       setSellables(nftdata?.filter((nf: any) => nf["value"]["collectable"]));
     })();

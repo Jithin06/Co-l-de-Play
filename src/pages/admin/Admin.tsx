@@ -11,7 +11,6 @@ interface Props {
 }
 
 const Admin = (props: Props) => {
-    console.log(props);
 
     const [activeForm, setActiveForm] = useState("addEventForm");
 

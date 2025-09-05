@@ -26,7 +26,6 @@ const Tickets = (props: Props) => {
       if (activeacc) {
         const userAddress = activeacc.address;
         const nfts = await fetchtickets(userAddress);
-        console.log(nfts);
         setFungi(nfts);
       }
     })();
