@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Navbar } from "../../components";
 import "./Tickets.css";
 import QRCode from "react-qr-code";
+import fetchtickets from "../../helpers/fetch/fetchtickets";
 
 interface Props {
   wallet: walletInterfaceProps;

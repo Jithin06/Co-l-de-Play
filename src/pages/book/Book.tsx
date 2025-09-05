@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navbar } from "../../components";
 import "./Book.css";
-import fetchEvents from "../../helpers/fetchEvents";
+import fetchEvents from "../../helpers/fetch/fetchEvents";
 import buyTicket from "../../helpers/contracts/buyTicket";
 import toast from "react-hot-toast";
 
@@ -76,7 +76,8 @@ const Book = (props: Props) => {
                     props.wallet.dAppclient,
                     nm,
                     ticks,
-                    prc * ticks
+                    prc * ticks,
+                    kyc
                   );
                   setHide(true);
                 }}

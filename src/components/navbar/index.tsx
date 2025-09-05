@@ -60,6 +60,13 @@ const Navbar = (props: Props) => {
           </div>
           <div
             onClick={() => {
+              navigate("/market");
+            }}
+          >
+            Market
+          </div>
+          <div
+            onClick={() => {
               navigate("/admin");
             }}
           >

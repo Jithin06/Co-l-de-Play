@@ -2,8 +2,8 @@ import "./App.css";
 import { dAppClientTezos } from "./helpers/constants";
 import { Route, Routes } from "react-router";
 import { useEffect, useState } from "react";
-import { Home, Book, Verify, Tickets, Admin } from "./pages";
-import { Toaster } from 'react-hot-toast';
+import { Home, Book, Verify, Tickets, Admin, Market } from "./pages";
+import { Toaster } from "react-hot-toast";
 
 interface walletList {
   tezos: string;
@@ -64,7 +64,7 @@ function App() {
     wallets: activeAddress,
     connect: onConnectWallet,
     disconnect: onDisconnectWallet,
-    dAppclient: dAppClientTezos
+    dAppclient: dAppClientTezos,
   };
 
   return (
@@ -76,6 +76,7 @@ function App() {
         <Route path="/tickets" element={<Tickets wallet={walletProp} />} />
         <Route path="/verify" element={<Verify wallet={walletProp} />} />
         <Route path="/admin" element={<Admin wallet={walletProp} />} />
+        <Route path="/market" element={<Market wallet={walletProp} />} />
       </Routes>
     </>
   );
